@@ -1,10 +1,9 @@
 services:
     - App\\Core\\RouterFactory::createRouter
 
-    databaseInitializer:
-        factory: App\\Core\\Database\\DatabaseInitializer
+    App\\Core\\Database\\DatabaseInitializer:
         arguments:
-            schemaFile: %appDir%/../database/schema.sql
+            $schemaFile: %appDir%/../database/schema.sql
         setup:
             - initialize
 
