@@ -6,7 +6,10 @@ namespace App\Presentation\Home;
 
 use Nette;
 
-
 final class HomePresenter extends Nette\Application\UI\Presenter
 {
+        public function actionDefault(): void
+        {
+                $this->redirect('Regions:default');
+        }
 }

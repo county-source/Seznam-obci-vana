@@ -4,33 +4,33 @@ parameters:
 
 
 application:
-	errorPresenter:
-		4xx: Error:Error4xx
-		5xx: Error:Error5xx
-	mapping: App\Presentation\*\**Presenter
+        errorPresenter:
+                4xx: Error:Error4xx
+                5xx: Error:Error5xx
+        mapping: App\Presentation\*\**Presenter
 
 
 database:
-	dsn: 'sqlite::memory:'
-	user:
-	password:
+        dsn: 'sqlite:%tempDir%/seznam-obci.db'
+        user:
+        password:
 
 
 latte:
-	strictTypes: yes
-	strictParsing: yes
-	extensions:
-		- App\Presentation\Accessory\LatteExtension
+        strictTypes: yes
+        strictParsing: yes
+        extensions:
+                - App\Presentation\Accessory\LatteExtension
 
 
 assets:
-	mapping:
-		default:
-			path: assets
-			# type: vite  # Uncomment to activate Vite for asset building
+        mapping:
+                default:
+                        path: assets
+                        # type: vite  # Uncomment to activate Vite for asset building
 
 
 di:
-	export:
-		parameters: no
-		tags: no
+        export:
+                parameters: no
+                tags: no

@@ -1,0 +1,17 @@
+{block title}Seznam krajů{/block}
+
+{block content}
+<div class="card shadow-sm">
+        <div class="card-body">
+                <h1 class="h3 mb-4">Vyberte kraj</h1>
+                <p class="text-muted">Kliknutím na kraj zobrazíte okresy, které do něj spadají.</p>
+                <ul class="list-group mt-4" n:if="$regions->count()">
+                        <li class="list-group-item" n:foreach="$regions as $region">
+                                <span>{$region->name}</span>
+                                <a class="btn btn-primary" n:href="Districts:default regionId => $region->id">Zobrazit okresy</a>
+                        </li>
+                </ul>
+                <p n:if="!$regions->count()" class="text-muted mb-0">Žádné kraje nebyly nalezeny.</p>
+        </div>
+</div>
+{/block}
