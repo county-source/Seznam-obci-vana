@@ -1,0 +1,23 @@
+{block title}Okresy v kraji {$region->name}{/block}
+
+{block content}
+<ul class="breadcrumb mb-3">
+        <li><a n:href="Regions:default">Kraje</a></li>
+        <li>{$region->name}</li>
+</ul>
+
+<div class="card shadow-sm">
+        <div class="card-body">
+                <h1 class="h3 mb-4">Okresy v kraji {$region->name}</h1>
+                <p class="text-muted">Vyberte okres, pro který chcete zobrazit seznam obcí.</p>
+                <ul class="list-group mt-4" n:if="$districts->count()">
+                        <li class="list-group-item" n:foreach="$districts as $district">
+                                <span>{$district->name}</span>
+                                <a class="btn btn-primary" n:href="Municipalities:default regionId => $region->id, districtId => $district->id">Zobrazit obce</a>
+                        </li>
+                </ul>
+                <p n:if="!$districts->count()" class="text-muted mb-0">Pro tento kraj nejsou evidovány žádné okresy.</p>
+                <a class="btn btn-secondary mt-4" n:href="Regions:default">Zpět na přehled krajů</a>
+        </div>
+</div>
+{/block}
