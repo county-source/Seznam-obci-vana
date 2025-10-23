@@ -1,17 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="cs">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-
-	<title>{ifset title}{include title|stripHtml} | {/ifset}Nette Web</title>
-
-	{asset? 'main.js'}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{ifset title}{include title|stripHtml} | {/ifset}Seznam obcí</title>
+        <link rel="stylesheet" href="{$basePath}/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{$basePath}/css/app.css">
 </head>
-
 <body>
-	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+        <div class="site-wrapper">
+                <header class="header-shadow">
+                        <div class="container">
+                                <nav class="navbar" aria-label="Hlavní navigace">
+                                        <a class="navbar-brand" n:href="Regions:default">Seznam obcí</a>
+                                        <div>
+                                                <a class="nav-link" n:href="Regions:default" n:class="$presenter->isLinkCurrent('Regions:default') ? 'fw-bold'">Kraje</a>
+                                                <a class="nav-link" n:if="$presenter->getParameter('regionId')" n:href="Districts:default regionId => $presenter->getParameter('regionId')" n:class="($presenter->isLinkCurrent('Districts:default') || $presenter->isLinkCurrent('Municipalities:default')) ? 'fw-bold'">Okresy</a>
+                                        </div>
+                                </nav>
+                        </div>
+                </header>
 
-	{include content}
+                <main class="py-4">
+                        <div class="container">
+                                <div n:foreach="$flashes as $flash" class="alert alert-{$flash->type|default:'info'}" role="alert">
+                                        {$flash->message}
+                                </div>
+                                {include content}
+                        </div>
+                </main>
+
+                <footer class="footer">
+                        <div class="container">
+                                <small>&copy; {=date('Y')} Seznam obcí – projekt v Nette</small>
+                        </div>
+                </footer>
+        </div>
 </body>
 </html>

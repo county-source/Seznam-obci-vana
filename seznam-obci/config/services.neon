@@ -1,11 +1,14 @@
 services:
-	- App\Core\RouterFactory::createRouter
-
+    - App\Core\RouterFactory::createRouter
+    -
+        factory: App\Core\Database\DatabaseInitializer(%appDir%/../database/schema.sql)
+        setup:
+            - initialize
 
 search:
-	-	in: %appDir%
-		classes:
-			- *Facade
-			- *Factory
-			- *Repository
-			- *Service
+    - in: %appDir%
+      classes:
+        - *Facade
+        - *Factory
+        - *Repository
+        - *Service
